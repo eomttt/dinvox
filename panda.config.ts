@@ -10,8 +10,7 @@ import {
   defineTokens,
   defineUtility,
 } from '@pandacss/dev';
-import type { UtilityConfig } from '@pandacss/types';
-import { NestedCssProperties } from './styled-system/types';
+import type { UtilityConfig, PropertyTransform } from '@pandacss/types';
 
 const colorTokens = Object.entries(colors).reduce(
   (acc, [key, value]) => {
@@ -29,9 +28,7 @@ const utilities = Object.entries(utils).reduce((acc, [key, utilityFunc]) => {
   return {
     ...acc,
     [key]: defineUtility({
-      transform: value => {
-        return utilityFunc(value as never) as NestedCssProperties | undefined;
-      },
+      transform: utilityFunc as PropertyTransform,
     }),
   };
 }, {} as UtilityConfig);
