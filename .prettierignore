@@ -1,0 +1,12 @@
+.**/.next/**/*
+**/dist/**/*
+**/generated/**/*
+**/coverage/**/*
+**/node_modules/**/*
+
+**/yarn.lock
+**/*.json5
+
+.yarn/**/*
+
+*.yml
