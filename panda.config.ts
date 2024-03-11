@@ -1,26 +1,48 @@
-import { defineConfig, defineRecipe } from '@pandacss/dev';
+import {
+  ColorKeyType,
+  ColorValueType,
+  colors,
+} from '@/packages/design-packages/colors';
+import { utils } from '@/packages/design-packages/utils';
+import {
+  defineConfig,
+  definePreset,
+  defineTokens,
+  defineUtility,
+} from '@pandacss/dev';
+import type { UtilityConfig } from '@pandacss/types';
+import { NestedCssProperties } from './styled-system/types';
 
-const buttonRecipe = defineRecipe({
-  className: 'button-recipe',
-  description: 'The styles for the Button component',
-  base: {
-    display: 'flex',
+const colorTokens = Object.entries(colors).reduce(
+  (acc, [key, value]) => {
+    return {
+      ...acc,
+      [key]: {
+        value,
+      },
+    };
   },
-  variants: {
-    val: {
-      funky: { background: 'red', color: 'white' },
-      edgy: { border: '1px solid red' },
-    },
-    size: {
-      sm: { padding: '4', fontSize: '12px' },
-      lg: { padding: '8', fontSize: '40px' },
-    },
-    shape: {
-      square: { borderRadius: '0' },
-      circle: { borderRadius: '50%', backgroundColor: 'blue' },
-    },
+  {} as Record<ColorKeyType, { value: ColorValueType }>
+);
+
+const utilities = Object.entries(utils).reduce((acc, [key, utilityFunc]) => {
+  return {
+    ...acc,
+    [key]: defineUtility({
+      transform: value => {
+        return utilityFunc(value as never) as NestedCssProperties | undefined;
+      },
+    }),
+  };
+}, {} as UtilityConfig);
+
+const presets = definePreset({
+  theme: {
+    tokens: defineTokens({
+      colors: colorTokens,
+    }),
   },
-  jsx: ['Button'],
+  utilities: utilities,
 });
 
 export default defineConfig({
@@ -28,8 +50,11 @@ export default defineConfig({
   // [@pandacss/preset-base, @pandacss/preset-panda]
   eject: true,
 
+  presets: ['@pandacss/preset-base', presets],
+
   // The namespace prefix for the generated css classes and css variables.
   prefix: 'flexteam',
+  jsxFactory: 'flexteam',
 
   // Whether to watch for changes and regenerate the css.
   watch: true,
@@ -50,43 +75,6 @@ export default defineConfig({
     'html, body': {
       margin: 0,
       padding: 0,
-    },
-  },
-
-  // Useful for theme customization
-  theme: {
-    recipes: {
-      Button: buttonRecipe,
-    },
-    tokens: {
-      colors: {
-        primary: { value: '#0FEE0F', description: 'Primary color' },
-        secondary: { value: '#EE0F0F' },
-      },
-      fonts: {
-        body: { value: 'system-ui, sans-serif' },
-      },
-    },
-    semanticTokens: {
-      colors: {
-        danger: { value: '{colors.secondary}' },
-        success: { value: '{colors.primary}' },
-      },
-    },
-  },
-
-  // The css utility definitions.
-  utilities: {
-    color: {
-      values: 'colors',
-    },
-    px: {
-      transform(value) {
-        return {
-          paddingLeft: value,
-          paddingRight: value,
-        };
-      },
     },
   },
 
