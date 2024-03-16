@@ -37,6 +37,11 @@ const presets = definePreset({
   theme: {
     tokens: defineTokens({
       colors: colorTokens,
+      sizes: {
+        gnb: {
+          value: '240px',
+        },
+      },
     }),
   },
   utilities: utilities,
