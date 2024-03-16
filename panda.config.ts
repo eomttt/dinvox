@@ -50,15 +50,15 @@ export default defineConfig({
   presets: ['@pandacss/preset-base', presets],
 
   // The namespace prefix for the generated css classes and css variables.
-  prefix: 'flexteam',
-  jsxFactory: 'flexteam',
+  prefix: 'dinvox',
 
   // Whether to watch for changes and regenerate the css.
   watch: true,
 
   // Where to look for your css declarations
   include: [
-    './src/components/**/*.{ts,tsx,js,jsx}',
+    './src/domains/**/*.{ts,tsx,js,jsx}',
+    './src/packages/**/*.{ts,tsx,js,jsx}',
     './src/pages/**/*.{ts,tsx,js,jsx}',
   ],
 
@@ -70,8 +70,62 @@ export default defineConfig({
 
   globalCss: {
     'html, body': {
+      fontFamily: `Pretendard,  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,
+      '-webkit-font-smoothing': 'antialiased',
+      '-moz-osx-font-smoothing': 'auto',
+      lineHeight: 1,
+      fontSize: '14px',
       margin: 0,
       padding: 0,
+      fontWeight: 500,
+    },
+    '*': { boxSizing: 'border-box' },
+    'a, area, button, [role="button"], input:not([type="range"]), label, select, summary, textarea':
+      {
+        outline: 'none',
+      },
+
+    '[role="button"]': {
+      background: 'none',
+    },
+
+    'input, button,select, optgroup, textarea': {
+      margin: '0',
+      padding: '0',
+      border: 'none',
+      color: 'inherit',
+      fontSize: 'inherit',
+      fontFamily: 'inherit',
+      lineHeight: 'inherit',
+    },
+    'button, html [type="button"],[type="reset"], [type="submit"]': {
+      '-webkit-appearance': 'none',
+    },
+    p: {
+      marginTop: 0,
+      marginBottom: 0,
+    },
+    'h1, h2, h3, h4, h5, h6': {
+      margin: 0,
+      padding: 0,
+    },
+
+    'input, textarea': {
+      '-webkit-appearance': 'none',
+      appearance: 'none',
+    },
+    'input[type="search"]': {
+      '-webkit-appearance': 'none',
+    },
+    'ul, ol': {
+      listStyle: 'none',
+      paddingInlineStart: 0,
+      marginInlineStart: 0,
+      marginInlineEnd: 0,
+      marginBlockStart: 0,
+      marginBlockEnd: 0,
     },
   },
 
