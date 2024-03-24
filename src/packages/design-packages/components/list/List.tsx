@@ -28,7 +28,6 @@ const listItemRecipe = cva({
     display: 'flex',
     alignItems: 'center',
     height: '45px',
-    padding: '0 10px',
   },
   variants: {
     divider: {
