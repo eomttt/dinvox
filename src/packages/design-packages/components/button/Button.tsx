@@ -1,5 +1,6 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { cva, cx } from '../../../../../styled-system/css';
+import { Flex } from '../layout/Flex';
 
 const buttonRecipes = cva({
   base: {
@@ -13,10 +14,11 @@ const buttonRecipes = cva({
   },
 });
 
-const Button = ({
-  className,
-  ...props
-}: ComponentPropsWithoutRef<'button'>) => {
+interface Props extends ComponentPropsWithoutRef<'button'> {
+  leftSlot?: ReactNode;
+}
+
+const Button = ({ className, leftSlot, children, ...props }: Props) => {
   return (
     <button
       className={cx(
@@ -26,7 +28,21 @@ const Button = ({
         className
       )}
       {...props}
-    />
+    >
+      {leftSlot ? (
+        <Flex
+          css={{
+            gap: '8px',
+          }}
+          align="center"
+        >
+          {leftSlot}
+          {children}
+        </Flex>
+      ) : (
+        children
+      )}
+    </button>
   );
 };
 
