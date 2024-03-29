@@ -1,10 +1,11 @@
 import { Button, List } from '@/packages/design-packages/components';
-import { styled } from '../../../styled-system/jsx';
-import { EnvelopeIcon } from '@/packages/design-packages/icons/EnvelopeIcon';
-import { css } from '../../../styled-system/css';
-import { ReactNode } from 'react';
+import { Typography } from '@/packages/design-packages/components/typography/Typography';
 import { CheckIcon } from '@/packages/design-packages/icons/CheckIcon';
+import { EnvelopeIcon } from '@/packages/design-packages/icons/EnvelopeIcon';
 import { SettingIcon } from '@/packages/design-packages/icons/SettingIcon';
+import { ReactNode } from 'react';
+import { css } from '../../../styled-system/css';
+import { styled } from '../../../styled-system/jsx';
 
 const GnBMenu = ['inbox', 'done', 'sent', 'setting'] as const;
 
@@ -17,19 +18,19 @@ type GnBValue = {
 const GnBMenuRecord: Record<GnBMenu, GnBValue> = {
   inbox: {
     title: 'Inbox',
-    icon: <EnvelopeIcon />,
+    icon: <EnvelopeIcon size={20} />,
   },
   done: {
     title: 'Done',
-    icon: <CheckIcon />,
+    icon: <CheckIcon size={20} />,
   },
   sent: {
     title: 'Sent',
-    icon: <EnvelopeIcon />,
+    icon: <EnvelopeIcon size={20} />,
   },
   setting: {
     title: 'Setting',
-    icon: <SettingIcon />,
+    icon: <SettingIcon size={20} />,
   },
 };
 
@@ -47,7 +48,7 @@ const GNB = () => {
                 })}
                 leftSlot={GnBMenuRecord[menu].icon}
               >
-                {GnBMenuRecord[menu].title}
+                <Typography>{GnBMenuRecord[menu].title}</Typography>
               </Button>
             </List.Item>
           );
