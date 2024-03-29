@@ -75,9 +75,7 @@ export default defineConfig({
 
   globalCss: {
     'html, body': {
-      fontFamily: `Pretendard,  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,
+      fontFamily: `ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"`,
       '-webkit-font-smoothing': 'antialiased',
       '-moz-osx-font-smoothing': 'auto',
       lineHeight: 1,
