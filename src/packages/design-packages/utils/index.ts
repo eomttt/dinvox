@@ -58,12 +58,12 @@ const utils = {
     marginBottom: value,
   }),
   px: (value: number) => ({
-    paddingTop: value,
-    paddingBottom: value,
-  }),
-  py: (value: number) => ({
     paddingLeft: value,
     paddingRight: value,
+  }),
+  py: (value: number) => ({
+    paddingTop: value,
+    paddingBottom: value,
   }),
   radiusZero: (value: 'left' | 'right' | 'top' | 'bottom') => {
     if (value === 'left') {
