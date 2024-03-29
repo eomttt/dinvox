@@ -4,26 +4,34 @@ import { Flex } from '../layout/Flex';
 
 const buttonRecipes = cva({
   base: {
-    width: '100%',
-    height: '100%',
     cursor: 'pointer',
     backgroundColor: 'transparent',
     '&:hover': {
-      backgroundColor: 'black004',
+      backgroundColor: 'black008',
+    },
+  },
+  variants: {
+    active: {
+      true: {
+        backgroundColor: 'black004',
+      },
     },
   },
 });
 
 interface Props extends ComponentPropsWithoutRef<'button'> {
+  active?: boolean;
   leftSlot?: ReactNode;
 }
 
-const Button = ({ className, leftSlot, children, ...props }: Props) => {
+const Button = ({ className, leftSlot, children, active, ...props }: Props) => {
   return (
     <button
       className={cx(
         // using the list recipe
-        buttonRecipes(),
+        buttonRecipes({
+          active: active,
+        }),
         // adding style overrides (external)
         className
       )}
