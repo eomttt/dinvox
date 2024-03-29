@@ -5,7 +5,7 @@ import { MailData } from '@/types/mail';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { ComponentPropsWithoutRef } from 'react';
 
-const MailList = ({ ...props }: ComponentPropsWithoutRef<typeof List>) => {
+const Inbox = ({ ...props }: ComponentPropsWithoutRef<typeof List>) => {
   const { data: mailList } = useSuspenseQuery<{ list: MailData[] }>({
     queryKey: QueryKeys.Mail.lists(),
     queryFn: getMails,
@@ -24,4 +24,4 @@ const MailList = ({ ...props }: ComponentPropsWithoutRef<typeof List>) => {
   );
 };
 
-export { MailList };
+export { Inbox };

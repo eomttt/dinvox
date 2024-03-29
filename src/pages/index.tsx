@@ -1,5 +1,5 @@
 import GNB from '@/domains/GNB';
-import { MailList } from '@/domains/Mail';
+import { Inbox } from '@/domains/Inbox';
 import { Layout } from '@/packages/design-packages/components';
 import { Suspense } from 'react';
 
@@ -13,7 +13,7 @@ export default function Home() {
       }
     >
       <Suspense fallback={<div>LOADING</div>}>
-        <MailList />
+        <Inbox />
       </Suspense>
     </Layout>
   );
