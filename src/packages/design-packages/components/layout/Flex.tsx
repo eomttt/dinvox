@@ -42,6 +42,9 @@ const flexRecipe = cva({
       end: {
         justifyContent: 'flex-end',
       },
+      between: {
+        justifyContent: 'space-between',
+      },
     },
   },
   defaultVariants: {
