@@ -9,14 +9,32 @@ interface Props {
   onChangeSelectedMenu: (value: Menu) => void;
 }
 
+type MenuType = 'fixed' | 'floatingHide' | 'floatingShow';
+
 const GNB = ({ selectedMenu, onChangeSelectedMenu }: Props) => {
-  const [isFloating, setIsFloating] = useState(false);
+  const [type, setType] = useState<MenuType>('fixed');
 
   return (
-    <StyledContainer floating={isFloating}>
+    <StyledContainer
+      type={type}
+      onMouseEnter={() => {
+        if (type !== 'fixed') {
+          setType('floatingShow');
+        }
+      }}
+      onMouseLeave={() => {
+        if (type !== 'fixed') {
+          setType('floatingHide');
+        }
+      }}
+    >
       <Header
         onClickHide={() => {
-          setIsFloating(!isFloating);
+          if (type === 'fixed') {
+            setType('floatingShow');
+          } else {
+            setType('fixed');
+          }
         }}
       />
       <MenuList
@@ -27,25 +45,35 @@ const GNB = ({ selectedMenu, onChangeSelectedMenu }: Props) => {
   );
 };
 
+const floatingStyle = {
+  position: 'absolute',
+  height: 'fit-content',
+  backgroundColor: 'grayLightest',
+  zIndex: 1,
+  borderRadius: 8,
+  boxShadow: 'rgba(0, 0, 0, 0.024) -1px 0px 0px 0px inset',
+};
+
 const StyledContainer = styled('nav', {
   base: {
     width: 'gnb',
     height: '100vh',
     backgroundColor: 'black004',
 
-    transition: 'transform',
+    transition: 'transform 0.2s ease 0s, opacity 0.2s ease 0s;',
   },
   variants: {
-    floating: {
-      true: {
-        transform: 'translateY(40px)',
-
-        position: 'absolute',
-        height: 'fit-content',
-        backgroundColor: 'grayLightest',
-        zIndex: 1,
-        borderRadius: 4,
-        boxShadow: 'rgba(0, 0, 0, 0.024) -1px 0px 0px 0px inset',
+    type: {
+      fixed: {},
+      floatingHide: {
+        opacity: 0,
+        transform: 'translateX(calc(10px - 100%)) translateY(40px)',
+        ...floatingStyle,
+      },
+      floatingShow: {
+        opacity: 1,
+        transform: 'translate(0, 40px)',
+        ...floatingStyle,
       },
     },
   },

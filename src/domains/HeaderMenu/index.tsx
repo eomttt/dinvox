@@ -13,7 +13,7 @@ const HeaderMenu = ({ selectedMenu }: Props) => {
       align="center"
       className={css({
         height: '100%',
-        px: 10,
+        px: 40,
         gap: 10,
       })}
     >
