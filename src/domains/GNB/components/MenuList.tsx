@@ -16,7 +16,7 @@ const MenuList = ({ selectedMenu }: Props) => {
     <StyledList>
       {Menu.map(menu => {
         return (
-          <StyledLink key={menu} href={menu}>
+          <StyledLink key={menu} href={menu} active={selectedMenu === menu}>
             <List.Item key={menu}>
               <Flex
                 align="center"
