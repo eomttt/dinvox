@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { cva, cx } from '../../../../../styled-system/css';
+import { styled } from '../../../../../styled-system/jsx';
 
 const listRecipe = cva({
   base: {
@@ -40,24 +41,6 @@ const listItemRecipe = cva({
   },
 });
 
-interface ListItemProps extends ComponentPropsWithoutRef<'li'> {
-  divider?: boolean;
-}
-
-const ListItem = ({ className, divider = false, ...props }: ListItemProps) => {
-  return (
-    <li
-      {...props}
-      className={cx(
-        listItemRecipe({
-          divider: divider ? true : false,
-        }),
-        className
-      )}
-    />
-  );
-};
-
-List.Item = ListItem;
+List.Item = styled('li', listItemRecipe);
 
 export { List };

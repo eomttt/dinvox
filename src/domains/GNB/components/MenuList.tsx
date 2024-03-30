@@ -16,19 +16,20 @@ const MenuList = ({ selectedMenu }: Props) => {
     <StyledList>
       {Menu.map(menu => {
         return (
-          <StyledLink key={menu} href={menu} active={selectedMenu === menu}>
-            <List.Item key={menu}>
+          <List.Item key={menu}>
+            <StyledLink href={menu} active={selectedMenu === menu}>
               <Flex
                 align="center"
                 className={css({
                   gap: 8,
+                  height: '100%',
                 })}
               >
                 {MenuIconRecord[menu].icon}
                 <Typography>{MenuIconRecord[menu].title}</Typography>
               </Flex>
-            </List.Item>
-          </StyledLink>
+            </StyledLink>
+          </List.Item>
         );
       })}
     </StyledList>
@@ -44,12 +45,12 @@ const StyledList = styled(List, {
 const StyledLink = styled(Link, {
   base: {
     px: 10,
-    cursor: 'pointer',
-    textDecoration: 'none',
 
-    '&:hover': {
-      backgroundColor: 'black008',
-    },
+    width: '100%',
+    height: '100%',
+
+    textDecoration: 'none',
+    clickable: 'weak',
   },
   variants: {
     active: {
