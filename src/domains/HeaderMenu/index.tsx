@@ -1,7 +1,8 @@
-import { MenuIconRecord } from '@/domains//Core/menu-icon-record';
-import { Menu } from '@/domains/Core/Menu';
+import { MenuIconRecord } from '@/domains/core/menu-icon-record';
+import { Menu } from '@/domains/core/Menu';
 import { Flex } from '@/packages/design-packages/components/layout/Flex';
 import { css } from '../../../styled-system/css';
+import { Typography } from '@/packages/design-packages/components/typography/Typography';
 
 interface Props {
   selectedMenu: Menu;
@@ -18,7 +19,7 @@ const HeaderMenu = ({ selectedMenu }: Props) => {
       })}
     >
       {MenuIconRecord[selectedMenu].icon}
-      {MenuIconRecord[selectedMenu].title}
+      <Typography>{MenuIconRecord[selectedMenu].title}</Typography>
     </Flex>
   );
 };

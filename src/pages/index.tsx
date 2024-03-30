@@ -1,24 +1,18 @@
-import { Menu } from '@/domains/Core/Menu';
 import GNB from '@/domains/GNB';
 import { HeaderMenu } from '@/domains/HeaderMenu';
 import { Inbox } from '@/domains/Inbox';
 import { Layout } from '@/packages/design-packages/components';
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 
 export default function Home() {
-  const [selectedMenu, setSelectedMenu] = useState<Menu>('inbox');
-
   return (
     <Layout
       gnb={
         <Suspense>
-          <GNB
-            selectedMenu={selectedMenu}
-            onChangeSelectedMenu={setSelectedMenu}
-          />
+          <GNB selectedMenu="inbox" />
         </Suspense>
       }
-      header={<HeaderMenu selectedMenu={selectedMenu} />}
+      header={<HeaderMenu selectedMenu="inbox" />}
     >
       <Suspense fallback={<div>LOADING</div>}>
         <Inbox />
@@ -26,3 +20,12 @@ export default function Home() {
     </Layout>
   );
 }
+
+export const getServerSideProps = async () => {
+  return {
+    redirect: {
+      destination: '/inbox',
+      permanent: false,
+    },
+  };
+};

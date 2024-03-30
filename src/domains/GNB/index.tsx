@@ -1,4 +1,4 @@
-import { Menu } from '@/domains/Core/Menu';
+import { Menu } from '@/domains/core/Menu';
 import { useState } from 'react';
 import { styled } from '../../../styled-system/jsx';
 import { Header } from './components/Header';
@@ -6,12 +6,11 @@ import { MenuList } from './components/MenuList';
 
 interface Props {
   selectedMenu: Menu;
-  onChangeSelectedMenu: (value: Menu) => void;
 }
 
 type MenuType = 'fixed' | 'floatingHide' | 'floatingShow';
 
-const GNB = ({ selectedMenu, onChangeSelectedMenu }: Props) => {
+const GNB = ({ selectedMenu }: Props) => {
   const [type, setType] = useState<MenuType>('fixed');
 
   return (
@@ -37,10 +36,7 @@ const GNB = ({ selectedMenu, onChangeSelectedMenu }: Props) => {
           }
         }}
       />
-      <MenuList
-        selectedMenu={selectedMenu}
-        onChangeSelectedMenu={onChangeSelectedMenu}
-      />
+      <MenuList selectedMenu={selectedMenu} />
     </StyledContainer>
   );
 };

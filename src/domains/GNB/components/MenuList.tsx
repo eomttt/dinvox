@@ -1,36 +1,34 @@
-import { Menu } from '@/domains/Core/Menu';
-import { Button, List } from '@/packages/design-packages/components';
+import { Menu } from '@/domains/core/Menu';
+import { MenuIconRecord } from '@/domains/core/menu-icon-record';
+import { List } from '@/packages/design-packages/components';
 import { Typography } from '@/packages/design-packages/components/typography/Typography';
-import { css } from '../../../../styled-system/css';
+import Link from 'next/link';
 import { styled } from '../../../../styled-system/jsx';
-import { MenuIconRecord } from '@/domains/Core/menu-icon-record';
+import { Flex } from '@/packages/design-packages/components/layout/Flex';
+import { css } from '../../../../styled-system/css';
 
 interface Props {
   selectedMenu: Menu;
-  onChangeSelectedMenu: (value: Menu) => void;
 }
 
-const MenuList = ({ selectedMenu, onChangeSelectedMenu }: Props) => {
+const MenuList = ({ selectedMenu }: Props) => {
   return (
     <StyledList>
       {Menu.map(menu => {
         return (
-          <List.Item key={menu}>
-            <Button
-              className={css({
-                width: '100%',
-                height: '100%',
-                px: 10,
-              })}
-              active={selectedMenu === menu}
-              leftSlot={MenuIconRecord[menu].icon}
-              onClick={() => {
-                onChangeSelectedMenu(menu);
-              }}
-            >
-              <Typography>{MenuIconRecord[menu].title}</Typography>
-            </Button>
-          </List.Item>
+          <StyledLink key={menu} href={menu}>
+            <List.Item key={menu}>
+              <Flex
+                align="center"
+                className={css({
+                  gap: 8,
+                })}
+              >
+                {MenuIconRecord[menu].icon}
+                <Typography>{MenuIconRecord[menu].title}</Typography>
+              </Flex>
+            </List.Item>
+          </StyledLink>
         );
       })}
     </StyledList>
@@ -40,6 +38,25 @@ const MenuList = ({ selectedMenu, onChangeSelectedMenu }: Props) => {
 const StyledList = styled(List, {
   base: {
     gap: '4px',
+  },
+});
+
+const StyledLink = styled(Link, {
+  base: {
+    px: 10,
+    cursor: 'pointer',
+    textDecoration: 'none',
+
+    '&:hover': {
+      backgroundColor: 'black008',
+    },
+  },
+  variants: {
+    active: {
+      true: {
+        backgroundColor: 'black004',
+      },
+    },
   },
 });
 
