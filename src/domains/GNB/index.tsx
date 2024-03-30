@@ -1,9 +1,15 @@
+import { Menu } from '@/domains/Core/Menu';
 import { useState } from 'react';
 import { styled } from '../../../styled-system/jsx';
 import { Header } from './components/Header';
 import { MenuList } from './components/MenuList';
 
-const GNB = () => {
+interface Props {
+  selectedMenu: Menu;
+  onChangeSelectedMenu: (value: Menu) => void;
+}
+
+const GNB = ({ selectedMenu, onChangeSelectedMenu }: Props) => {
   const [isFloating, setIsFloating] = useState(false);
 
   return (
@@ -13,7 +19,10 @@ const GNB = () => {
           setIsFloating(!isFloating);
         }}
       />
-      <MenuList />
+      <MenuList
+        selectedMenu={selectedMenu}
+        onChangeSelectedMenu={onChangeSelectedMenu}
+      />
     </StyledContainer>
   );
 };
