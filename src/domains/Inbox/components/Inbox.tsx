@@ -27,7 +27,7 @@ const Inbox = ({ ...props }: ComponentPropsWithoutRef<typeof List>) => {
               height: 60,
             }}
           >
-            <StyledLink href={mailData.id}>
+            <StyledLink href={`/inbox/${mailData.id}`}>
               <Flex
                 align="center"
                 className={css({

@@ -1,25 +1,27 @@
 import GNB from '@/domains/GNB';
 import { HeaderMenu } from '@/domains/HeaderMenu';
 import { Inbox } from '@/domains/Inbox';
-import { Menu } from '@/domains/core/Menu';
-import { isSupportedMenu } from '@/domains/core/isSupportedMenu';
 import { Layout } from '@/packages/design-packages/components';
 import { GetServerSideProps } from 'next';
 import { Suspense } from 'react';
 
+import { machine } from '@zag-js/popover';
+
 interface Props {
-  menu: Menu;
+  id: string;
 }
 
-export default function MenuPage({ menu }: Props) {
+export default function InboxDetailPage({ id }: Props) {
+  const {} = machine();
+
   return (
     <Layout
       gnb={
         <Suspense>
-          <GNB selectedMenu={menu} />
+          <GNB selectedMenu="inbox" />
         </Suspense>
       }
-      header={<HeaderMenu selectedMenu={menu} />}
+      header={<HeaderMenu selectedMenu="inbox" />}
     >
       <Suspense fallback={<div>LOADING</div>}>
         <Inbox />
@@ -29,18 +31,18 @@ export default function MenuPage({ menu }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps<{
-  menu: Menu;
+  id: string;
 }> = async context => {
-  const { menu } = context.query;
+  const { id } = context.query;
 
-  if (!isSupportedMenu(menu)) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
+  if (typeof id === 'string' && id !== undefined) {
+    return { props: { id } };
   }
 
-  return { props: { menu } };
+  return {
+    redirect: {
+      destination: '/inbox',
+      permanent: false,
+    },
+  };
 };

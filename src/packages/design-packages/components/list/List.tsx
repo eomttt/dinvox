@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from 'react';
 import { cva, cx } from '../../../../../styled-system/css';
 import { styled } from '../../../../../styled-system/jsx';
 
-const listRecipe = cva({
+export const listRecipe = cva({
   base: {
     display: 'flex',
     flexDirection: 'column',
