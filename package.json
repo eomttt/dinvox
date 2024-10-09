@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prepare": "panda codegen",
-    "dev": "yarn panda --clean & next dev",
+    "dev": "yarn panda --clean & yarn panda codegen & next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

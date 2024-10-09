@@ -1,5 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
-import { RecipeVariantProps, cva } from '../../../../../styled-system/css';
+import { cva } from '../../../../../styled-system/css';
 import { styled } from '../../../../../styled-system/jsx';
 
 const flexRecipe = cva({

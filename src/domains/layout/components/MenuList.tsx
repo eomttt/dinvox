@@ -1,14 +1,14 @@
-import { Menu } from '@/domains/core/Menu';
-import { MenuIconRecord } from '@/domains/core/menu-icon-record';
-import { List } from '@/packages/design-packages/components';
-import { Typography } from '@/packages/design-packages/components/typography/Typography';
+import { Menu } from 'domains/menu/constants/menu';
+import { MenuIconRecord } from 'domains/menu/menu-icon-record';
 import Link from 'next/link';
-import { styled } from '../../../../styled-system/jsx';
-import { Flex } from '@/packages/design-packages/components/layout/Flex';
+import { List } from 'packages/design-packages/components';
+import { Flex } from 'packages/design-packages/components/layout/Flex';
+import { Typography } from 'packages/design-packages/components/typography/Typography';
 import { css } from '../../../../styled-system/css';
+import { styled } from '../../../../styled-system/jsx';
 
 interface Props {
-  selectedMenu: Menu;
+  selectedMenu?: Menu;
 }
 
 const MenuList = ({ selectedMenu }: Props) => {

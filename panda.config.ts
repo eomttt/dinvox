@@ -1,16 +1,16 @@
 import {
-  ColorKeyType,
-  ColorValueType,
-  colors,
-} from '@/packages/design-packages/colors';
-import { utils } from '@/packages/design-packages/utils';
-import {
   defineConfig,
   definePreset,
   defineTokens,
   defineUtility,
 } from '@pandacss/dev';
-import type { UtilityConfig, PropertyTransform } from '@pandacss/types';
+import type { PropertyTransform, UtilityConfig } from '@pandacss/types';
+import {
+  ColorKeyType,
+  ColorValueType,
+  colors,
+} from 'packages/design-packages/colors';
+import { utils } from 'packages/design-packages/utils';
 
 const colorTokens = Object.entries(colors).reduce(
   (acc, [key, value]) => {
@@ -38,7 +38,7 @@ const presets = definePreset({
     tokens: defineTokens({
       colors: colorTokens,
       sizes: {
-        gnb: {
+        snb: {
           value: '240px',
         },
       },
@@ -64,7 +64,7 @@ export default defineConfig({
   include: [
     './src/domains/**/*.{ts,tsx,js,jsx}',
     './src/packages/**/*.{ts,tsx,js,jsx}',
-    './src/pages/**/*.{ts,tsx,js,jsx}',
+    './src/app/**/*.{ts,tsx,js,jsx}',
   ],
 
   // Files to exclude

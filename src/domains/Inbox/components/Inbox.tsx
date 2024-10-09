@@ -1,14 +1,14 @@
-import { getMails } from '@/packages/api/mail';
-import { List } from '@/packages/design-packages/components';
-import { Typography } from '@/packages/design-packages/components/typography/Typography';
-import { QueryKeys } from '@/packages/react-query/queryKeys';
-import { MailData } from '@/types/mail';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import Link from 'next/link';
+import { getMails } from 'packages/api/mail';
+import { List } from 'packages/design-packages/components';
+import { Flex } from 'packages/design-packages/components/layout/Flex';
+import { Typography } from 'packages/design-packages/components/typography/Typography';
+import { QueryKeys } from 'packages/react-query/queryKeys';
 import { ComponentPropsWithoutRef } from 'react';
+import { MailData } from 'types/mail';
 import { css } from '../../../../styled-system/css';
 import { styled } from '../../../../styled-system/jsx';
-import { Flex } from '@/packages/design-packages/components/layout/Flex';
 
 const Inbox = ({ ...props }: ComponentPropsWithoutRef<typeof List>) => {
   const { data: mailList } = useSuspenseQuery<{ list: MailData[] }>({

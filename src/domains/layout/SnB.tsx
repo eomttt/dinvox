@@ -1,17 +1,20 @@
-import { Menu } from '@/domains/core/Menu';
+'use client';
+import { Button } from 'packages/design-packages/components';
+import { AngleDoubleSmallLeftIcon } from 'packages/design-packages/icons/AngleDoubleSmallLeftIcon';
 import { useState } from 'react';
+import { css } from '../../../styled-system/css';
 import { styled } from '../../../styled-system/jsx';
 import { Header } from './components/Header';
 import { MenuList } from './components/MenuList';
 
-interface Props {
-  selectedMenu: Menu;
-}
+import { useGetCurrentMenu } from 'domains/menu/hooks/useGetCurrentMenu';
 
 type MenuType = 'fixed' | 'floatingHide' | 'floatingShow';
 
-const GNB = ({ selectedMenu }: Props) => {
+const SnB = () => {
   const [type, setType] = useState<MenuType>('fixed');
+
+  const currentMenu = useGetCurrentMenu();
 
   return (
     <StyledContainer
@@ -28,15 +31,27 @@ const GNB = ({ selectedMenu }: Props) => {
       }}
     >
       <Header
-        onClickHide={() => {
-          if (type === 'fixed') {
-            setType('floatingShow');
-          } else {
-            setType('fixed');
-          }
-        }}
+        title="Profile"
+        rightSlot={
+          <Button
+            className={css({
+              width: 30,
+              height: 30,
+              borderRadius: '4px',
+            })}
+            onClick={() => {
+              if (type === 'fixed') {
+                setType('floatingShow');
+              } else {
+                setType('fixed');
+              }
+            }}
+          >
+            <AngleDoubleSmallLeftIcon />
+          </Button>
+        }
       />
-      <MenuList selectedMenu={selectedMenu} />
+      <MenuList selectedMenu={currentMenu} />
     </StyledContainer>
   );
 };
@@ -50,11 +65,11 @@ const floatingStyle = {
   boxShadow: 'rgba(0, 0, 0, 0.024) -1px 0px 0px 0px inset',
 };
 
-const StyledContainer = styled('nav', {
+const StyledContainer = styled('div', {
   base: {
-    width: 'gnb',
+    width: 'snb',
     height: '100vh',
-    backgroundColor: 'black004',
+    backgroundColor: 'grayLightest',
 
     transition: 'transform 0.2s ease 0s, opacity 0.2s ease 0s;',
   },
@@ -75,4 +90,4 @@ const StyledContainer = styled('nav', {
   },
 });
 
-export default GNB;
+export { SnB };
